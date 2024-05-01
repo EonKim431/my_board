@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate ="~{layouts/default_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content"  class="content">
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>수정</th>
+            <th>삭제</th>
+        </tr>
+        <tr th:object="${dto}" >
+            <td><span th:href="@{/articles/detail/{id}(id=*{id})}" th:text =*{id}></span></td>
+            <td><span th:href="@{/articles/detail/{id}(id=*{id})}" th:text =*{title}></span></td>
+            <td><span th:href="@{/articles/detail/{id}(id=*{id})}" th:text =*{content}></span></td>
+            <td>
+                <form th:action="@{/articles/update}">
+                    <input type="submit" value="수정">
+                    <input type="hidden" th:value="*{id}" name="id">
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/articles/delete}">
+                    <input type="submit" value="삭제">
+                    <input type="hidden" th:value="*{id}" name="id">
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

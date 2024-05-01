@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate ="~{layouts/default_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" th:src="@{/js/check.js}"></script>
+</head>
+<body>
+<div layout:fragment="content"  class="content">
+    <form id="frm" name="frm" class="container" th:action="@{/articles/insert}" method="post" th:object="${dto}">
+        <div class="mb3">
+            <label class="form-label">제목</label>
+            <input id="title" type="text" class="form-control" th:field="*{title}">
+            <span th:errors="*{title}"></span>
+        </div>
+        <div class="mb3">
+            <label class="form-label">내용</label>
+            <textarea id="contents" class="form-control" rows="3" th:field="*{content}"></textarea>
+            <span th:errors="*{content}"></span>
+        </div>
+        <input type="button" value="저장" class="btn btn-primary" onclick="check()">
+        <input type="button" value="초기화" class="btn btn-primary" onclick="res()">
+        <a href="/">돌아가기</a>
+    </form>
+</div>
+</body>
+</html>
