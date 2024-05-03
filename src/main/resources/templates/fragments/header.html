@@ -18,10 +18,30 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/articles/delete}">delete</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    <li class="nav-item"
+                    sec:authorize="hasRole('ADMIN')">
+                        Admin 권한이 있습니다
+                    </li>
+                    <li class="nav-item"
+                    sec:authorize="hasRole('USER')">
+                        USER 권한이 있습니다
                     </li>
                 </ul>
+            </div>
+            <div class="text-end">
+                <a role="button" id="signup" class="btn btn-outline-primary me-2"
+                   sec:authorize="isAnonymous()"
+                   th:href="@{/user/signup}">회원가입</a>
+                <a role="button" id="login" class="btn btn-outline-primary me-2"
+                   sec:authorize="isAnonymous()"
+                   th:href="@{/user/login}">Login</a>
+<!--                <form th:action="@{/logout}" method="post"-->
+<!--                      sec:authorize="isAuthenticated()">-->
+<!--                    <input type="submit" value="loguut" id="signup" class="btn btn-outline-primary me-2">-->
+<!--                </form>-->
+                <a role="button" id="logout" class="btn btn-outline-primary me-2"
+                   sec:authorize="isAuthenticated()"
+                   th:href="@{/logout}">Logout</a>
             </div>
         </div>
     </nav>
